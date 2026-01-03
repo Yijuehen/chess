@@ -1,0 +1,69 @@
+// src/components/GameControls.scss
+
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  
+  .game-status {
+    .status {
+      font-size: 18px;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 4px;
+      
+      &.check {
+        color: #c81b1b;
+        background-color: rgba(200, 27, 27, 0.1);
+      }
+      
+      &.checkmate {
+        color: #ff9800;
+        background-color: rgba(255, 152, 0, 0.1);
+      }
+      
+      &.normal {
+        color: #333;
+      }
+    }
+  }
+  
+  .control-buttons {
+    display: flex;
+    gap: 10px;
+    
+    .btn {
+      padding: 10px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      
+      &.btn-undo {
+        background-color: #607d8b;
+        color: white;
+        
+        &:hover:not(:disabled) {
+          background-color: #546e7a;
+        }
+      }
+      
+      &.btn-restart {
+        background-color: #5e4018;
+        color: white;
+        
+        &:hover {
+          background-color: #4a3214;
+        }
+      }
+    }
+  }
+}

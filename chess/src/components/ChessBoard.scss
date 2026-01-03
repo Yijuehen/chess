@@ -1,0 +1,15 @@
+// src/components/ChessBoard.scss
+
+.chess-board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  
+  .chess-board {
+    border: 3px solid #5e4018;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: #eecfa1;
+  }
+}

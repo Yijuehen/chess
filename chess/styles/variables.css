@@ -1,0 +1,10 @@
+/* src/styles/variables.css */
+
+:root {
+  --primary-color: #5e4018;
+  --red-color: #c81b1b;
+  --black-color: #111111;
+  --board-bg: #eecfa1;
+  --highlight-color: rgba(76, 175, 80, 0.5);
+  --selected-color: rgba(255, 235, 59, 0.6);
+}

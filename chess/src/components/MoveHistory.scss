@@ -1,0 +1,54 @@
+// src/components/MoveHistory.scss
+
+.move-history {
+  padding: 15px;
+  
+  h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .moves-list {
+    max-height: 200px;
+    overflow-y: auto;
+    
+    .empty-message {
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px 0;
+    }
+    
+    .move-item {
+      display: flex;
+      align-items: center;
+      padding: 4px 8px;
+      font-size: 14px;
+      border-bottom: 1px solid #eee;
+      
+      .move-number {
+        width: 30px;
+        color: #999;
+      }
+      
+      .move-side {
+        width: 50px;
+        font-weight: 500;
+        
+        &.red {
+          color: #c81b1b;
+        }
+        
+        &.black {
+          color: #111;
+        }
+      }
+      
+      .move-notation {
+        flex: 1;
+        color: #333;
+      }
+    }
+  }
+}

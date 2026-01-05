@@ -1,9 +1,9 @@
 // src/components/ChessBoard.tsx
 
-import React, { useRef, useEffect, useCallback } from 'react';
-import { useGameStore } from '../store/gameStore';
-import { BOARD_CONFIG, COLORS, PIECE_LABELS } from '../utils/constants';
-import './ChessBoard.scss';
+import React, { useRef, useEffect, useCallback } from "react";
+import { useGameStore } from "../store/gameStore";
+import { BOARD_CONFIG, COLORS, PIECE_LABELS } from "../utils/constants";
+import "./ChessBoard.scss";
 
 const ChessBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

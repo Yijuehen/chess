@@ -1,6 +1,6 @@
 // src/utils/initBoard.ts
 
-import { BoardState, Piece } from '../types/index';
+import type { BoardState, Piece } from '../types/index';
 
 export const createEmptyBoard = (): BoardState => {
   return Array(10).fill(null).map(() => Array(9).fill(null));

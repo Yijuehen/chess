@@ -1,7 +1,7 @@
 // src/utils/rules.ts
 
-import { BoardState, Position, Piece, Color, PieceType } from '../types/index';
 import { PALACE } from './constants';
+import type { BoardState, Position, Piece, Color, PieceType } from '../types/index';
 
 // 验证位置是否在棋盘内
 export const isValidPosition = (row: number, col: number): boolean => {
@@ -201,9 +201,11 @@ export const getValidMoves = (
   
   const moves: Position[] = [];
   
+  // 遍历棋盘上的所有位置，检查是否可以移动到该位置
   for (let r = 0; r < 10; r++) {
     for (let c = 0; c < 9; c++) {
-      if (canMoveTo(board, { row: r, col: c }, { row, col }, piece.color)) {
+      // 检查是否可以从当前位置移动到(r,c)
+      if (canMoveTo(board, { row, col }, { row: r, col: c }, piece.color)) {
         moves.push({ row: r, col: c });
       }
     }
@@ -216,6 +218,7 @@ export const getValidMoves = (
 export const isInCheck = (board: BoardState, color: Color): boolean => {
   let generalPos: Position | null = null;
   
+  // 找到己方将军的位置
   for (let r = 0; r < 10; r++) {
     for (let c = 0; c < 9; c++) {
       const piece = board[r][c];
@@ -231,11 +234,12 @@ export const isInCheck = (board: BoardState, color: Color): boolean => {
   
   const oppositeColor = color === 'red' ? 'black' : 'red';
   
+  // 检查对方是否有棋子可以吃到我方将军
   for (let r = 0; r < 10; r++) {
     for (let c = 0; c < 9; c++) {
       const piece = board[r][c];
       if (piece && piece.color === oppositeColor) {
-        if (canMoveTo(board, { row: r, col: c }, generalPos!, oppositeColor)) {
+        if (canMoveTo(board, { row: r, col: c }, generalPos, oppositeColor)) {
           return true;
         }
       }
@@ -249,16 +253,20 @@ export const isInCheck = (board: BoardState, color: Color): boolean => {
 export const isCheckmate = (board: BoardState, color: Color): boolean => {
   if (!isInCheck(board, color)) return false;
   
+  // 遍历所有己方棋子
   for (let r = 0; r < 10; r++) {
     for (let c = 0; c < 9; c++) {
       const piece = board[r][c];
       if (piece && piece.color === color) {
+        // 获取当前棋子的所有合法走法
         const moves = getValidMoves(board, r, c);
         for (const move of moves) {
+          // 创建新棋盘并模拟走子
           const newBoard = copyBoard(board);
           newBoard[move.row][move.col] = newBoard[r][c];
           newBoard[r][c] = null;
           
+          // 如果移动后不再被将军，则不是将死
           if (!isInCheck(newBoard, color)) {
             return false;
           }
@@ -268,6 +276,11 @@ export const isCheckmate = (board: BoardState, color: Color): boolean => {
   }
   
   return true;
+};
+
+// 复制棋盘
+const copyBoard = (board: BoardState): BoardState => {
+  return board.map(row => [...row]);
 };
 
 // 生成棋谱记法
